@@ -11,8 +11,9 @@ int main(){
   char buff[1024];
   struct sockaddr_in server_addr;
   int bytes_sent,bytes_received;
-  char file_name[30];
   int total_bytes_sent = 0;
+  char file_name[30];
+
 
   client_sock=socket(AF_INET,SOCK_STREAM,0);
 
@@ -21,7 +22,7 @@ int main(){
   server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
   if(connect(client_sock,(struct sockaddr*)&server_addr,sizeof(struct sockaddr))!=0){
-    printf("\nError!Can not connect to sever!Client exit imediately!\n");
+    printf("\nError!Can not connect to sever!Client exit imediately! ");
     return 0;
   }
 
@@ -54,12 +55,14 @@ int main(){
       exit(-1);
     }
     buff[bytes_received] = '\0';
+    fprintf(receive_file, "%s", buff);
   }
 
   fclose(sent_file);
   fclose(receive_file);
 
   printf("Sent bytes: %d\n", total_bytes_sent);
+  printf("File receive: receive_file.txt\n");
 
   close(client_sock);
   return 0;

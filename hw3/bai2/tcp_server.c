@@ -5,7 +5,7 @@
 #include <arpa/inet.h>
 #include <ctype.h>
 
-#define PORT 5550   /* Port that will be opened */
+#define PORT 5500   /* Port that will be opened */
 #define BACKLOG 2   /* Number of allowed connections */
 
 void converStr(char* str){
